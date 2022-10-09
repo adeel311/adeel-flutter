@@ -1,0 +1,277 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(debugShowCheckedModeBanner: false, home: BottomScreen());
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    double height = AppBar().preferredSize.height;
+    return Scaffold(
+      backgroundColor: Colors.blue.shade900,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Hello Dan,",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                "Excited to cook something new today?",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 100,
+                width: double.infinity,
+                child: Card(
+                  color: Colors.pink.shade200,
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Icon(
+                        Icons.shopping_cart_outlined,
+                        size: 45,
+                        color: Colors.blue.shade900,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "You have 12 recipes that",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "you haven't tried yet",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "See more",
+                            style: TextStyle(
+                                color: Colors.blue.shade900,
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 400,
+                width: double.infinity,
+                child: Card(
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  color: Colors.pink.shade200,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            height: 400,
+                            decoration: BoxDecoration(
+                                image: new DecorationImage(
+                                  image: new NetworkImage(
+                                      "https://www.ourmodernkitchen.com/wp-content/uploads/2020/05/Indian-Butter-Chicken-with-Peanut-Cream-018.jpg"),
+                                  fit: BoxFit.fill,
+                                  colorFilter: ColorFilter.mode(
+                                      Colors.white.withOpacity(0.7),
+                                      BlendMode.dstIn),
+                                )),
+                          )),
+                      Positioned(
+                          top: 20,
+                          left: 10,
+                          right: 290,
+                          child: Container(
+                              width: 10,
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(252, 99, 60, 0.6),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  "you haven't tried yet",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ))),
+                      Positioned(
+                          top: 270,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: Container(
+                              width: 10,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.transparent,
+                                    Color.fromRGBO(252, 99, 60, 0.3),
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  stops: [0, 0.2],
+                                ),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  "Checken Makkhi\nsouth Masla",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ))),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Trending Recipe",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BottomScreen extends StatefulWidget {
+  @override
+  State<BottomScreen> createState() => _BottomScreenState();
+}
+
+class _BottomScreenState extends State<BottomScreen> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    HomeScreen(),
+    Text(
+      'Search',
+      style: optionStyle,
+    ),
+    Text(
+      'Cart',
+      style: optionStyle,
+    ),
+    Text(
+      'Profile',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.yellow,
+        onTap: _onItemTapped,
+        unselectedItemColor: Colors.black,
+      ),
+    );
+  }
+}
